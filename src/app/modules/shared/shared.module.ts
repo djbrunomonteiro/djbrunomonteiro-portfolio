@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { MaterialShareModule } from '../material-share/material-share.module';
+import { TechModalComponent } from '../../shared/modals/tech-modal/tech-modal.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TechModalComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { MaterialShareModule } from '../material-share/material-share.module';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TechModalComponent
   ]
 })
 export class SharedModule { }

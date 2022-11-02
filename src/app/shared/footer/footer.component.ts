@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TechModalComponent } from '../modals/tech-modal/tech-modal.component';
 
 @Component({
   selector: 'app-footer',
@@ -9,9 +11,15 @@ export class FooterComponent implements OnInit {
 
   technologies = []
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openTech(){
+    this.dialog.open(TechModalComponent);
   }
 
 }
