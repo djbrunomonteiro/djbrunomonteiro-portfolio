@@ -88,11 +88,4 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule
   ]
 })
-export class MaterialShareModule {
-  static forRoot() {
-    return {
-        ngModule: MaterialShareModule,
-        providers: [],
-    };
-  }
-}
+export class MaterialShareModule {}
