@@ -25,8 +25,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
@@ -57,7 +57,9 @@ import {MatCardModule} from '@angular/material/card';
     MatTabsModule,
     MatStepperModule,
     MatProgressBarModule,
-    MatCardModule
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   exports:[
     MatSnackBarModule,
@@ -85,7 +87,11 @@ import {MatCardModule} from '@angular/material/card';
     MatTabsModule,
     MatStepperModule,
     MatProgressBarModule,
-    MatCardModule
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ]
 })
-export class MaterialShareModule {}
+export class MaterialShareModule {
+ 
+}

@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       {
         path: 'blog',

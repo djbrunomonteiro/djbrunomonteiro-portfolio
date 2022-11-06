@@ -15,7 +15,7 @@ import { TechModalComponent } from '../../shared/modals/tech-modal/tech-modal.co
   ],
   imports: [
     CommonModule,
-    MaterialShareModule
+    MaterialShareModule,
   ],
   exports: [
     HeaderComponent,
