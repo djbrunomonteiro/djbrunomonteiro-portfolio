@@ -9,6 +9,8 @@ export class ProfileComponent implements OnInit {
 
   step = 0;
 
+  projects = []
+
   constructor() { }
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class ProfileComponent implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  setProjects(){
+
   }
 
 }
