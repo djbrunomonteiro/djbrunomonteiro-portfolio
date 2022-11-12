@@ -7,19 +7,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
   declarations: [ProfileComponent, BlogComponent],
   imports: [
     CommonModule,
+    BrowserModule,
     MaterialShareModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
   ],
-  exports: [ProfileComponent, BlogComponent]
+  exports: [ProfileComponent, BlogComponent],
+  providers: []
 })
 export class ViewsModule { }

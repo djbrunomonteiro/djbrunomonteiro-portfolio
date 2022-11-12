@@ -1,30 +1,4 @@
 <div class="container-fluid">
-  <!-- <div class="row d-flex align-items-center">
-    <div class="col-sm-2 ">
-      <img
-        class="img-profile"
-        src="../../../assets/images/bruno-profile.jpg"
-        alt=""
-      />
-    </div>
-    <div class="col-sm-10 ">
-      <p>Opa, sou Bruno Monteiro e Bem vindo ao meu mundo :)</p>
-      <p>
-        Atualmente sou desenvolvedor Front-end na Enuves Technologies e
-        eternamente estou aprendendo tecnologias para web, como Angular 2+,
-        Ionic, NGRX, Testes Unitários, Node.js, e o que precisar para resolver
-        problemas.
-      </p>
-      <p>
-        Sou de São Luis/MA, Graduado em Produção Multimidias pelo
-        IFSC de Palhoça/SC e Dj nas horas vagas.
-      </p>
-
-    </div>
-
-
-
-  </div> -->
 
   <div class="row d-flex align-items-center">
     <div class="col-sm-12 dev">
@@ -32,33 +6,7 @@
         <div class="col-12">
           <div class="row">
             <div class="col-12">
-              <!-- <div class="row top">
-                <div class="btn-sup">
-                  <p>DJ</p>
-                </div>
-                <div class="btn-sup">
-                  <p>BRU</p>
-                </div>
-                <div class="btn-sup">
-                  <p>NO</p>
-                </div>
-                <div class="btn-sup">
-                  <p><i class="bi bi-headphones"></i></p>
-                </div>
-                <div class="btn-sup">
-                  <p>MON</p>
-                </div>
-                <div class="btn-sup">
-                  <p>TEI</p>
-                </div>
-                <div class="btn-sup">
-                  <p>RO</p>
-                </div>
-              </div> -->
               <div class="row middle">
-                <div class="btn-quad prev">
-                  <p><i class="bi bi-chevron-double-left"></i></p>
-                </div>
                 <div class="btn-quad">
                   <p>1</p>
                 </div>
@@ -71,22 +19,16 @@
                 <div class="btn-quad">
                   <p>4</p>
                 </div>
-                <div class="btn-quad">
-                  <p>4</p>
-                </div>
-                <div class="btn-quad">
-                  <p>4</p>
-                </div>
-                <div class="btn-quad next">
-                  <p><i class="bi bi-chevron-double-right"></i></p>
-                </div>
               </div>
               <div class="row bottom">
                 <div class="btn-bot">
                   <p>STOP</p>
                 </div>
                 <div class="painel">
-                  <p>EM BREVE MY BEATS</p>
+                  <div *ngFor="let item of wavRefs" class="wave" [id]="item?.name" > {{item?.name}}</div>
+                </div>
+                <div class="painel">
+                  <div class="wave" id="waveform1"></div>
                 </div>
                 <div class="btn-bot">
                   <p>PLAY</p>
@@ -114,11 +56,12 @@
                 vertical="false"
                 thumbLabel
                 [displayWith]="formatLabel"
-                tickInterval="1000"
-                step="1000"
-                min="0"
-                max="100000"
+                [max]="maxVolume"
+                [min]="minVolume"
+                [step]="stepWav"
                 aria-label="units"
+                [(ngModel)]="wavVolume"
+                (input)="controlVolume($event)"
               ></mat-slider>
             </div>
           </div>
@@ -340,13 +283,11 @@
     <div class="col-sm-12 body">
       <h2 class="big-title">Alguns Projetos #Dev</h2>
       <div class="row">
-        <div class="col-sm-2">
+        <div class="my-2 col-sm-3">
           <mat-card >
-            <mat-card-header>
-              <mat-card-title>REDs Bilingue</mat-card-title>
-            </mat-card-header>
             <img mat-card-image src="../../../assets/images/projetcts/reds-bilingue-libras-ifsc.png" >
             <mat-card-content>
+              <h3>REDs Bilíngue</h3>
               <p>
                 Projeto SPA desenvolvido em parceria com iDev Empresa Jr de SC.
               </p>
@@ -359,13 +300,11 @@
           </mat-card>
         </div>
 
-        <div class="col-sm-2">
+        <div class="my-2 col-sm-3">
           <mat-card  >
-            <mat-card-header>
-              <mat-card-title>JOGO BILÍNGUE LIBRAS/PORTUGUÊS</mat-card-title>
-            </mat-card-header>
             <img mat-card-image src="../../../assets/images/projetcts/jogo-bilingue-libras-ifsc.png" >
             <mat-card-content>
+              <h3>Jogo Enseada Libras </h3>
               <p>
                 Desenvolvido com parceria projeto de extensão IFSC-Palhoça.
               </p>
@@ -377,13 +316,11 @@
             </mat-card-actions>
           </mat-card>
         </div>
-        <div class="col-sm-2">
+        <div class="my-2 col-sm-3">
           <mat-card >
-            <mat-card-header>
-              <mat-card-title>JOGO CODrastico</mat-card-title>
-            </mat-card-header>
             <img  mat-card-image src="../../../assets/images/projetcts/codrastico.png" >
             <mat-card-content>
+              <h3>JOGO CODrastico</h3>
               <p>
                 Jogo de quiz temático sobre HTML E CSS.
               </p>
@@ -395,31 +332,12 @@
             </mat-card-actions>
           </mat-card>
         </div>
-        <div class="col-sm-2">
+
+        <div class="my-2 col-sm-3">
           <mat-card >
-            <mat-card-header>
-              <mat-card-title>SITE PATAMAR TINTAS</mat-card-title>
-            </mat-card-header>
-            <img  mat-card-image src="../../../assets/images/projetcts/patamar-tintas-web.png" >
-            <mat-card-content>
-              <p>
-                Site institucional.
-              </p>
-              <p>#Wordpress </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>GIT</button>
-              <button mat-button>VISUALIZAR</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-        <div class="col-sm-2">
-          <mat-card >
-            <mat-card-header>
-              <mat-card-title>NPMBR SEARCH</mat-card-title>
-            </mat-card-header>
             <img  mat-card-image src="../../../assets/images/projetcts/npmbr-search.png" >
             <mat-card-content>
+              <h3>NPMBR SEARCH</h3>
               <p>
                 Consulta de pacotes Npm Brasileiros.
               </p>
@@ -433,6 +351,10 @@
         </div>
       </div>
 
+      <div class="m-3 row">
+        <button mat-button>VER TODOS</button>
+      </div>
+
 
     </div>
 
@@ -444,7 +366,7 @@
     <div class="col-sm-12 body">
       <h2 class="big-title">PUBLICAÇÕES SOBRE PROJETOS QUE PARTICIPEI #Dev</h2>
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <iframe class="container-iframe" src="https://news.samsung.com/br/maratona-unicef-samsung-com-acessibilidade-para-deficientes-auditivos-jogo-ensina-sobre-como-evitar-infeccoes-sexualmente-transmissiveis" title="description"></iframe>
         </div>
 

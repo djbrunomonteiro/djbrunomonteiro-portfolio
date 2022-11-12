@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,13 +9,12 @@ import { SharedModule } from './modules/shared/shared.module';
 import { MaterialShareModule } from './modules/material-share/material-share.module';
 import { ViewsModule } from './modules/views/views.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

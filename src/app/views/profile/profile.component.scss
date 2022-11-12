@@ -158,3 +158,106 @@
     height: 600px;
 }
 
+mat-card{
+    img{
+        height: 200px;
+    }
+}
+
+.wave{
+    color: lavender;
+    width: 100%;
+    height: 70%;
+}
+
+@media  (max-width: 1450px) {
+    .dev{
+        .body{
+            .top{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+        
+            }
+            .middle{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                
+                .btn-quad{
+                    width: 100px;
+                    height: 100px;
+                    margin: 5px;
+                    border-radius: 10%;
+                    background: rgb(63,177,251);
+                    background: radial-gradient(circle, rgba(63,177,251,1) 0%, rgba(33,58,110,1) 100%);
+                    margin: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p{
+                        padding: 0px;
+                        font-size: 2rem;
+                        color: rgb(9, 4, 20);
+                    }
+                }
+                .prev{
+                    background: rgb(203,88,255);
+                    background: radial-gradient(circle, rgba(203,88,255,1) 4%, rgba(130,0,189,1) 100%);
+                    p {
+                        font-size: 2.8rem;
+                        color: rgb(0, 0, 0);
+                    }
+                }
+                .next{
+                    background: rgb(203,88,255);
+                    background: radial-gradient(circle, rgba(203,88,255,1) 4%, rgba(130,0,189,1) 100%);
+                    p {
+                        font-size: 2.8rem;
+                        color: rgb(0, 0, 0);
+                    }
+                }
+            }
+            .bottom{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .painel{
+                    width: 60%;
+                    height: 170px;
+                    margin: 0px;
+                    border-radius: 0px;
+                    background-color: #2f302f;
+                    border: 2px solid rgb(187, 187, 187);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p{
+                        padding: 0px;
+                        font-size: 2rem;
+                        color: rgb(9, 4, 20);
+                    }
+                }
+                .btn-bot{
+                    width: 170px;
+                    height: 170px;
+                    border-radius: 10%;
+                    // background-color: #85ea01;
+                    background: rgb(63,251,113);
+                    background: radial-gradient(circle, rgba(63,251,113,1) 0%, rgba(36,110,33,1) 100%);
+                    margin: 20px;
+                    border: 2px solid rgb(240, 240, 240);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p{
+                        padding: 0px;
+                        font-size: 2rem;
+                        color: rgb(9, 4, 20);
+                    }
+                }
+            }
+        }
+    }
+    
+}
