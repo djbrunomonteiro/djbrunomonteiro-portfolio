@@ -37,10 +37,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    setTimeout(()=>{
-      console.log(`res`);
-      
-    },1000)
+
     this.wavRefs.map((item) => {
       const ref = WaveSurfer.create({
        container: item.name,
