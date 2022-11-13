@@ -164,11 +164,17 @@ mat-card{
     }
 }
 
-.wave{
-    color: lavender;
-    width: 100%;
-    height: 70%;
+.painel{
+    position: relative;
+    .wave{
+        color: lavender;
+        width: 100%;
+        height: 70%;
+        position: absolute;
+        top: 10px;
+    }
 }
+
 
 @media  (max-width: 1450px) {
     .dev{

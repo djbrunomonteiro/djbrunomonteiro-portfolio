@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-import { setTimeout } from 'timers';
+import { IWavs } from 'src/app/models/wavs';
 import WaveSurfer from 'wavesurfer.js';
+import { interval, Observable, Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -13,72 +14,86 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   projects = [];
 
-  wavRef: WaveSurfer | undefined;
-
-  wavRefs = [
-    { name: 'wavRef1'},
-    { name: 'wavRef2'},
-    { name: 'wavRef3'},
-    { name: 'wavRef4'},
-
-  ]
-
-
+  wavRefs: IWavs[] = [];
 
   wavVolume = 0.7;
   maxVolume = 1;
   minVolume = 0;
   stepWav = 0.001;
 
-  myBeats = [{ name: '1' }, { name: '2' }, { name: '3' }, { name: '4' }];
+  myBeats = [
+    { name: 'wavRef1', wavColor: '#b3003b', curColor: '#ff1a66'},
+    { name: 'wavRef2', wavColor: '#e60000', curColor: '#ff8080'},
+    { name: 'wavRef3', wavColor: '#6600cc', curColor: '#a64dff'},
+    { name: 'wavRef4', wavColor: '#000099', curColor: '#6666ff'},
+  ];
+
+  intervalsRef$: Subject<boolean> = new Subject<boolean>();
+
+
+  timeUnsub$: any;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   ngAfterViewInit(): void {
-
-    this.wavRefs.map((item) => {
-      const ref = WaveSurfer.create({
-       container: item.name,
-       waveColor: 'violet',
-       progressColor: 'purple',
+    setTimeout(()=>{
+      this.wavRefs = this.myBeats.map((item) => {
+        const ref = WaveSurfer.create({
+         container: `#${item.name}`,
+         waveColor: item.wavColor,
+         progressColor: item.curColor,
+       });
+       return {...item, ref, url: `assets/audios/${item.name}.wav`}
      });
 
-     return {...item, ref}
-   });
+     if(this.wavRefs.length){
+      this.wavRefs.forEach(item =>{
+        item.ref?.load(item.url);
+      })
+     }
+    },2000)
 
-   console.log(this.wavRefs);
 
-    // console.log('wavs', this.wavRefs );
-    
+  }
 
-    this.wavRef = WaveSurfer.create({
-      container: '#waveform1',
-      waveColor: 'violet',
-      progressColor: 'purple',
-    });
-    if (this.wavRef) {
-      this.wavRef.load('assets/audios/teste.mp3');
-      console.log(this.wavRef);
-      this.wavRef.on('ready', () => {
-        // this.wavRef?.play();
-      });
+  playBeat(index: number){
+    const wavRef = this.wavRefs[index].ref as WaveSurfer;
+    if(wavRef.isPlaying()){
+      this.timeUnsub$.unsubscribe()
     }
+    wavRef.stop();
+    wavRef.play();
+    const time = interval(Number(wavRef.getDuration() * 1000));
+
+    this.timeUnsub$ = time.pipe(takeUntil(this.intervalsRef$)).subscribe((res)=>{
+      wavRef.stop();
+      wavRef.play();
+    })
+
+  }
+
+  stopAllBeats(){
+    this.wavRefs.forEach(item =>{
+      const wavRef = item.ref as WaveSurfer;
+      wavRef.stop();
+    });
+
+    this.intervalsRef$.next(true);
   }
 
   controlVolume(event: MatSliderChange) {
-
     this.wavVolume = Number(event.value);
-
-    if (this.wavRef && this.wavVolume) {
-      this.wavRef?.setVolume(this.wavVolume);
-    }
+    this.wavRefs.forEach(item =>{
+      const wavRef = item.ref as WaveSurfer;
+      wavRef.setVolume(this.wavVolume)
+    })
   }
 
   formatLabel(value: number) {
-    console.log(value);
-
     return value * 1000;
   }
 
