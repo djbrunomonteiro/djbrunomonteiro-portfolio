@@ -5,21 +5,34 @@
         <div class="col-12">
           <div class="row">
             <div class="col-12">
-              <div class="row middle">
-                <div (click)="playBeat(i)" class="btn-quad" *ngFor="let item of wavRefs; let i = index">
-                  <p>{{ i + 1 }}</p>
-                </div>
+              <div class="row middle justify-content-center">
+                <ng-container *ngFor="let item of wavRefs; let i = index" >
+                  <div class="col-2">
+                    <div class="row justify-content-center">
+                      <div (click)="playBeat(i)" class="btn-quad" [ngClass]="{'shadow-inset-center': checkIsPlaying(i)}" >
+                        <p>{{ i + 1 }}</p>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div (click)="pauseBeat(i)" class="btn-quad-stop" [ngClass]="{'shadow-inset-center': checkIsPlaying(i)}" >
+                        <span *ngIf="isPause(i)">stop</span>
+                        <span *ngIf="!isPause(i)">play</span>
+                      </div>
+                     </div>
+
+                  </div>
+                </ng-container>
               </div>
               <div class="row bottom">
                 <div (click)="stopAllBeats()" class="btn-bot">
-                  <p>STOP</p>
+                  <p>STOP ALL</p>
                 </div>
                 <div class="painel">
                   <div *ngFor="let item of myBeats" class="wave" [id]="item?.name">
                   </div>
                 </div>
                 <div class="btn-bot">
-                  <p>PLAY</p>
+                  <p>PLAY RANDOM</p>
                 </div>
               </div>
             </div>

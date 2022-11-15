@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   playBeat(index: number){
     const wavRef = this.wavRefs[index].ref as WaveSurfer;
     if(wavRef.isPlaying()){
-      this.timeUnsub$.unsubscribe()
+      this.timeUnsub$.unsubscribe();
     }
     wavRef.stop();
     wavRef.play();
@@ -76,6 +76,16 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   }
 
+  checkIsPlaying(index: number){
+    if(this.wavRefs.length){
+      const wavRef = this.wavRefs[index].ref as WaveSurfer;
+      return wavRef.isPlaying()
+    }else{
+      return false;
+    }
+
+  }
+
   stopAllBeats(){
     this.wavRefs.forEach(item =>{
       const wavRef = item.ref as WaveSurfer;
@@ -83,6 +93,22 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     });
 
     this.intervalsRef$.next(true);
+  }
+
+  pauseBeat(index: number){
+    const wavRef = this.wavRefs[index].ref as WaveSurfer;
+    if(wavRef.isPlaying()){
+      this.timeUnsub$.unsubscribe();
+      wavRef.stop();
+    }else{
+      this.playBeat(index)
+    }
+    
+  }
+
+  isPause(index: number){
+    const wavRef = this.wavRefs[index].ref as WaveSurfer;
+    return wavRef.isPlaying()
   }
 
   controlVolume(event: MatSliderChange) {
