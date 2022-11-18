@@ -1,9 +1,33 @@
 <mat-toolbar class="header-container">
-    <a mat-button routerLink="/" ><H1>Bruno Monteiro</H1></a>
-    <nav>
-        <a mat-button routerLink="/" ><i class="bi bi-person-bounding-box"></i>Profile</a>
-        <a mat-button routerLink="/" ><i class="bi bi-git"></i> Blog Dev</a>
-        <a mat-button routerLink="/" ><i class="bi bi-earbuds"></i> Blog Musicas</a>
-        <a mat-button routerLink="/" ><i class="bi bi-bezier"></i> Projetos</a>
-    </nav>
-  </mat-toolbar>
+  <a class="" mat-button routerLink="/">
+    <H1>Bruno Monteiro</H1>
+  </a>
+  <nav class="menu-desktop">
+    <a mat-button routerLink="/"><i class="bi bi-person-bounding-box"></i>Profile</a>
+    <a mat-button routerLink="/"><i class="bi bi-git"></i> Blog Dev</a>
+    <a mat-button routerLink="/"><i class="bi bi-earbuds"></i> Blog Musicas</a>
+    <a mat-button routerLink="/"><i class="bi bi-bezier"></i> Projetos</a>
+  </nav>
+  <nav class="menu-mobile">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span><i class="bi bi-person-bounding-box mx-2"></i> Profile</span>
+      </button>
+      <button mat-menu-item>
+        
+        <span><i class="bi bi-git mx-2"></i> Blog Dev</span>
+      </button>
+      <button mat-menu-item>
+        <span><i class="bi bi-earbuds mx-2"></i> Blog Musicas</span>
+      </button>
+      <button mat-menu-item>       
+        <span><i class="bi bi-bezier mx-2"></i>  Projetos</span>
+      </button>
+    </mat-menu>
+  </nav>
+</mat-toolbar>
+
+

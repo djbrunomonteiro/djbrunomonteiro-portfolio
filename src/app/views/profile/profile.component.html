@@ -31,7 +31,7 @@
                   <div *ngFor="let item of myBeats" class="wave" [id]="item?.name">
                   </div>
                 </div>
-                <div class="btn-bot">
+                <div (click)="playRandom()" class="btn-bot">
                   <p>PLAY RANDOM</p>
                 </div>
               </div>

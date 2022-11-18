@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   timeUnsub$: any;
 
+  indexRandom = 1;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -74,6 +76,36 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       wavRef.play();
     })
 
+  }
+
+  playRandom(){
+    this.stopAllBeats();
+    const index = Math.floor(Math.random() * this.myBeats.length);
+    console.log(index);
+    if(index === this.indexRandom){
+      this.indexRandom = index;
+      switch(index){
+        case 0:
+          this.playBeat(1);
+          break;
+        case 1:
+          this.playBeat(2);
+          break;
+        case 2:
+          this.playBeat(3);
+          break;
+        case 3:
+          this.playBeat(0);
+          break;
+      }
+
+    }else{
+      this.playBeat(index);
+      this.indexRandom = index;
+    }
+
+    
+    
   }
 
   checkIsPlaying(index: number){

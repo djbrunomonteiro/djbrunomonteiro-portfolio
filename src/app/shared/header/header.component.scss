@@ -3,4 +3,28 @@
     display: flex;
     justify-content: space-between;
     background-color: #131b20;
+    .menu-mobile{
+        display: none;
+    }
 }
+
+
+@keyframes lineH{
+    0%{
+        width: 0%;
+    }
+    100%{
+width: 95%;opacity: 0;
+}
+}
+
+@media screen and (max-width: 992px) {
+    .header-container {
+        .menu-desktop{
+            display: none;
+        }
+        .menu-mobile{
+            display: flex;
+        }
+    }
+  }
