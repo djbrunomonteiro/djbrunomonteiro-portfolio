@@ -3,7 +3,8 @@ import { MatSliderChange } from '@angular/material/slider';
 import { IWavs } from 'src/app/models/wavs';
 import WaveSurfer from 'wavesurfer.js';
 import { interval, Observable, Subject, take, takeUntil } from 'rxjs';
-
+import { WaveSurferPlugin } from 'wavesurfer.js/types/plugin';
+import MarkersPlugin from 'wavesurfer.js/src/plugin/markers';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -22,14 +23,13 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   stepWav = 0.001;
 
   myBeats = [
-    { name: 'wavRef1', wavColor: '#b3003b', curColor: '#ff1a66'},
-    { name: 'wavRef2', wavColor: '#e60000', curColor: '#ff8080'},
-    { name: 'wavRef3', wavColor: '#6600cc', curColor: '#a64dff'},
-    { name: 'wavRef4', wavColor: '#000099', curColor: '#6666ff'},
+    { name: 'base-1', wavColor: '#b3003b', curColor: '#ff1a66' },
+    { name: 'base-2', wavColor: '#e60000', curColor: '#ff8080' },
+    { name: 'base-3', wavColor: '#6600cc', curColor: '#a64dff' },
+    { name: 'base-4', wavColor: '#000099', curColor: '#6666ff' },
   ];
 
   intervalsRef$: Subject<boolean> = new Subject<boolean>();
-
 
   timeUnsub$: any;
 
@@ -37,54 +37,62 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.wavRefs = this.myBeats.map((item) => {
         const ref = WaveSurfer.create({
-         container: `#${item.name}`,
-         waveColor: item.wavColor,
-         progressColor: item.curColor,
-       });
-       return {...item, ref, url: `assets/audios/${item.name}.wav`}
-     });
+          container: `#${item.name}`,
+          waveColor: item.wavColor,
+          progressColor: item.curColor,
+          normalize: true,
+          plugins: [
+            MarkersPlugin.create({
+              markers: [
+              ],
+            }),
+          ],
+        });
 
-     if(this.wavRefs.length){
-      this.wavRefs.forEach(item =>{
-        item.ref?.load(item.url);
-      })
-     }
-    },2000)
+        return { ...item, ref, url: `assets/audios/${item.name}.ogg` };
+      });
 
+      if (this.wavRefs.length) {
+        this.wavRefs.forEach((item) => {
+          item.ref?.load(item.url);
+        });
+      }
+    }, 1000);
 
   }
 
-  playBeat(index: number){
+
+  playBeat(index: number) {
     const wavRef = this.wavRefs[index].ref as WaveSurfer;
-    if(wavRef.isPlaying()){
+
+    if (wavRef.isPlaying()) {
       this.timeUnsub$.unsubscribe();
     }
     wavRef.stop();
     wavRef.play();
     const time = interval(Number(wavRef.getDuration() * 1000));
 
-    this.timeUnsub$ = time.pipe(takeUntil(this.intervalsRef$)).subscribe((res)=>{
-      wavRef.stop();
-      wavRef.play();
-    })
-
+    this.timeUnsub$ = time
+      .pipe(takeUntil(this.intervalsRef$))
+      .subscribe((res) => {
+        wavRef.stop();
+        wavRef.play();
+      });
   }
 
-  playRandom(){
+  playRandom() {
     this.stopAllBeats();
     const index = Math.floor(Math.random() * this.myBeats.length);
     console.log(index);
-    if(index === this.indexRandom){
+    if (index === this.indexRandom) {
       this.indexRandom = index;
-      switch(index){
+      switch (index) {
         case 0:
           this.playBeat(1);
           break;
@@ -98,28 +106,23 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           this.playBeat(0);
           break;
       }
-
-    }else{
+    } else {
       this.playBeat(index);
       this.indexRandom = index;
     }
-
-    
-    
   }
 
-  checkIsPlaying(index: number){
-    if(this.wavRefs.length){
+  checkIsPlaying(index: number) {
+    if (this.wavRefs.length) {
       const wavRef = this.wavRefs[index].ref as WaveSurfer;
-      return wavRef.isPlaying()
-    }else{
+      return wavRef.isPlaying();
+    } else {
       return false;
     }
-
   }
 
-  stopAllBeats(){
-    this.wavRefs.forEach(item =>{
+  stopAllBeats() {
+    this.wavRefs.forEach((item) => {
       const wavRef = item.ref as WaveSurfer;
       wavRef.stop();
     });
@@ -127,28 +130,27 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this.intervalsRef$.next(true);
   }
 
-  pauseBeat(index: number){
+  pauseBeat(index: number) {
     const wavRef = this.wavRefs[index].ref as WaveSurfer;
-    if(wavRef.isPlaying()){
+    if (wavRef.isPlaying()) {
       this.timeUnsub$.unsubscribe();
       wavRef.stop();
-    }else{
-      this.playBeat(index)
+    } else {
+      this.playBeat(index);
     }
-    
   }
 
-  isPause(index: number){
+  isPause(index: number) {
     const wavRef = this.wavRefs[index].ref as WaveSurfer;
-    return wavRef.isPlaying()
+    return wavRef.isPlaying();
   }
 
   controlVolume(event: MatSliderChange) {
     this.wavVolume = Number(event.value);
-    this.wavRefs.forEach(item =>{
+    this.wavRefs.forEach((item) => {
       const wavRef = item.ref as WaveSurfer;
-      wavRef.setVolume(this.wavVolume)
-    })
+      wavRef.setVolume(this.wavVolume);
+    });
   }
 
   formatLabel(value: number) {
