@@ -15,7 +15,7 @@ import { ViewsModule } from './modules/views/views.module';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     ViewsModule,
