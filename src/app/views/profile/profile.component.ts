@@ -1,3 +1,4 @@
+import { UtilsService } from './../../services/utils.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { IWavs } from 'src/app/models/wavs';
@@ -35,9 +36,12 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   indexRandom = 1;
 
-  constructor() {}
+  constructor(
+    public utilsService: UtilsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -170,4 +174,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   setProjects() {}
+
+  
 }

@@ -4,9 +4,9 @@
   </a>
   <nav class="menu-desktop">
     <a mat-button routerLink="/"><i class="bi bi-person-bounding-box"></i>Profile</a>
-    <a mat-button routerLink="/"><i class="bi bi-git"></i> Blog Dev</a>
-    <a mat-button routerLink="/"><i class="bi bi-earbuds"></i> Blog Musicas</a>
-    <a mat-button routerLink="/"><i class="bi bi-bezier"></i> Projetos</a>
+    <!-- <a mat-button routerLink="/"><i class="bi bi-git"></i> Blog Dev</a> -->
+    <a mat-button (click)="utilsService.openLink('https://djbrunomonteiro.blogspot.com/')"><i class="bi bi-earbuds"></i> Blog Musicas</a>
+    <a mat-button (click)="utilsService.openLink('https://github.com/djbrunomonteiro?tab=repositories')"><i class="bi bi-bezier"></i> Projetos GIT</a>
   </nav>
   <nav class="menu-mobile">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -16,15 +16,15 @@
       <button mat-menu-item>
         <span><i class="bi bi-person-bounding-box mx-2"></i> Profile</span>
       </button>
-      <button mat-menu-item>
+      <!-- <button mat-menu-item>
         
         <span><i class="bi bi-git mx-2"></i> Blog Dev</span>
-      </button>
-      <button mat-menu-item>
+      </button> -->
+      <button mat-menu-item (click)="utilsService.openLink('https://djbrunomonteiro.blogspot.com/')">
         <span><i class="bi bi-earbuds mx-2"></i> Blog Musicas</span>
       </button>
-      <button mat-menu-item>       
-        <span><i class="bi bi-bezier mx-2"></i>  Projetos</span>
+      <button mat-menu-item (click)="utilsService.openLink('https://github.com/djbrunomonteiro?tab=repositories')">       
+        <span><i class="bi bi-bezier mx-2"></i>  Projetos GIT</span>
       </button>
     </mat-menu>
   </nav>
