@@ -1,20 +1,51 @@
-on: 
+name: Deploy Web FTP 
+
+on:
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
+
+  # the follow line allow this script to be started manually.
+  workflow_dispatch:
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
       with:
-        server: ${{ secrets.ftp_host }}
-        username: ${{ secrets.ftp_user }}
-        password: ${{ secrets.ftp_password }}
+        node-version: 16.13.2
+    - name: Install packages with NPM
+      run: npm install
+    - name: Build for production
+      run: npm run build:ssr -- --prod
+    - name: Upload artifacts to be used in next job
+      if: success()
+      uses: actions/upload-artifact@v1
+      with:
+        name: deploy_dist
+        path: dist/djbrunomonteiro-site2023/browser
+
+  ftp-deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+
+    - name: Download artifacts created at previous job
+      if: success()
+      uses: actions/download-artifact@v1
+      with:
+        name: deploy_dist
+        path: dist/djbrunomonteiro-site2023/browser
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Actions@master
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/site2023/
+        dangerous-clean-slate: true # optional
