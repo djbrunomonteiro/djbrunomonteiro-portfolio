@@ -42,10 +42,10 @@ jobs:
         name: deploy_dist
         path: dist/djbrunomonteiro-site2023/browser
     - name: Deploy to FTP
-      uses: SamKirkland/FTP-Deploy-Actions@master
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        server: ${{ secrets.ftp_host }}
+        username: ${{ secrets.ftp_user }}
+        password: ${{ secrets.ftp_password }}
         server-dir: public_html/site2023/
         dangerous-clean-slate: true # optional
