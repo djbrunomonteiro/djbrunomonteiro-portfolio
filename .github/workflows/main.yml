@@ -39,7 +39,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: deploy_dist
-        path: dist/djbrunomonteiro-site2023/browser/*
+        path: ./
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
