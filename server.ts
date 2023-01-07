@@ -12,7 +12,7 @@ import { existsSync } from 'fs';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const webSiteFileLocation = environment.production? 'browser' : 'dist/djbrunomonteiro-site2023/browser';
+  const webSiteFileLocation = environment.production? 'browser' : 'site/browser';
   const distFolder = join(process.cwd(), webSiteFileLocation);
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
