@@ -1,6 +1,6 @@
 import { UtilsService } from './../../services/utils.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
 import { IWavs } from 'src/app/models/wavs';
 import WaveSurfer from 'wavesurfer.js';
 import { interval, Observable, Subject, take, takeUntil } from 'rxjs';
