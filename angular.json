@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "djbrunomonteiro-site2023": {
+    "djbrunomonteiro-portfolio": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/djbrunomonteiro-site2023/browser",
+            "outputPath": "dist/djbrunomonteiro-portfolio/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "djbrunomonteiro-site2023:build:production"
+              "browserTarget": "djbrunomonteiro-portfolio:build:production"
             },
             "development": {
-              "browserTarget": "djbrunomonteiro-site2023:build:development"
+              "browserTarget": "djbrunomonteiro-portfolio:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "djbrunomonteiro-site2023:build"
+            "browserTarget": "djbrunomonteiro-portfolio:build"
           }
         },
         "test": {
@@ -109,7 +109,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/djbrunomonteiro-site2023/server",
+            "outputPath": "dist/djbrunomonteiro-portfolio/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -136,12 +136,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "djbrunomonteiro-site2023:build:development",
-              "serverTarget": "djbrunomonteiro-site2023:server:development"
+              "browserTarget": "djbrunomonteiro-portfolio:build:development",
+              "serverTarget": "djbrunomonteiro-portfolio:server:development"
             },
             "production": {
-              "browserTarget": "djbrunomonteiro-site2023:build:production",
-              "serverTarget": "djbrunomonteiro-site2023:server:production"
+              "browserTarget": "djbrunomonteiro-portfolio:build:production",
+              "serverTarget": "djbrunomonteiro-portfolio:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -155,12 +155,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "djbrunomonteiro-site2023:build:production",
-              "serverTarget": "djbrunomonteiro-site2023:server:production"
+              "browserTarget": "djbrunomonteiro-portfolio:build:production",
+              "serverTarget": "djbrunomonteiro-portfolio:server:production"
             },
             "development": {
-              "browserTarget": "djbrunomonteiro-site2023:build:development",
-              "serverTarget": "djbrunomonteiro-site2023:server:development"
+              "browserTarget": "djbrunomonteiro-portfolio:build:development",
+              "serverTarget": "djbrunomonteiro-portfolio:server:development"
             }
           },
           "defaultConfiguration": "production"
@@ -168,5 +168,5 @@
       }
     }
   },
-  "defaultProject": "djbrunomonteiro-site2023"
+  "defaultProject": "djbrunomonteiro-portfolio"
 }

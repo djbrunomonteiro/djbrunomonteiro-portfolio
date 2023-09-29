@@ -1,5 +1,5 @@
 {
-  "name": "djbrunomonteiro-site2023",
+  "name": "djbrunomonteiro-portfolio",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,10 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run djbrunomonteiro-site2023:serve-ssr",
-    "serve:ssr": "node dist/djbrunomonteiro-site2023/server/main.js",
-    "build:ssr": "ng build && ng run djbrunomonteiro-site2023:server",
-    "prerender": "ng run djbrunomonteiro-site2023:prerender"
+    "dev:ssr": "ng run djbrunomonteiro-portfolio:serve-ssr",
+    "serve:ssr": "node dist/djbrunomonteiro-portfolio/server/main.js",
+    "build:ssr": "ng build && ng run djbrunomonteiro-portfolio:server",
+    "prerender": "ng run djbrunomonteiro-portfolio:prerender"
   },
   "private": true,
   "dependencies": {

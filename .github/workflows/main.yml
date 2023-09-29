@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: deploy_dist
-        path: dist/djbrunomonteiro-site2023/browser/
+        path: dist/djbrunomonteiro-portfolio/browser/
 
   ftp-deploy:
     needs: build

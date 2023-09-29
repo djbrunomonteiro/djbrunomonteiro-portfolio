@@ -6,4 +6,4 @@
 
 Projeto para meu site pessoal para o ano de 2023.
 
-![alt text](https://github.com/djbrunomonteiro/djbrunomonteiro-site2023/blob/main/src/assets/images/shot-site.png?raw=true)
+![alt text](https://github.com/djbrunomonteiro/djbrunomonteiro-portfolio/blob/main/src/assets/images/shot-site.png?raw=true)
